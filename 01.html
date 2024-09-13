@@ -23,6 +23,9 @@
     ></script> -->
     <script>
       $(document).ready(function () {
+        $(window).load(function () {
+          $(".row").masonry();
+        });
         var masonryRow = document.querySelector(".row"); // Targeting the Masonry container
         if (masonryRow) {
           imagesLoaded(masonryRow, function () {
@@ -33,6 +36,10 @@
             });
           });
         }
+      });
+
+      $(window).load(function () {
+        $(".row").masonry();
       });
     </script>
     <style>
