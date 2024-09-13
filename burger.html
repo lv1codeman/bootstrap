@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*隱藏cehckbox*/
+      #burger_control {
+        display: none;
+      }
+      /*隱藏漢堡圖示(僅在手機版需要使用)*/
+      .burger_btn {
+        width: 2rem;
+        height: 3rem;
+        background-size: contain;
+        font-size: 1.1rem;
+        color: black;
+        /*漢堡圖示釘在導覽列右上角*/
+        position: absolute;
+        /*  top: .5rem;*/
+
+        top: 3rem;
+        right: 1rem;
+        z-index: 12;
+        /* display: none; */
+      }
+
+      .burger_btn:before {
+        content: "";
+        width: 2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-bottom: 4px solid black;
+        transition: 0.5s;
+        transform: translateY(0.7rem);
+      }
+
+      .burger_btn:after {
+        content: "";
+        position: absolute;
+        width: 2rem;
+        top: 0;
+        right: 0;
+        border-bottom: 4px solid black;
+        transform: translateY(1.4rem);
+        box-shadow: 0 0.7rem 0 black;
+        transition: 0.5s;
+      }
+
+      #burger_control:checked ~ .burger_btn:before {
+        transform: translateY(1.4rem) rotate(135deg);
+      }
+      #burger_control:checked ~ .burger_btn:after {
+        transform: translateY(1.4rem) rotate(-135deg);
+        box-shadow: 0 0 0 black;
+      }
+    </style>
+  </head>
+  <body>
+    26153
+    <input type="checkbox" id="burger_control" />
+    <label for="burger_control" class="burger_btn"></label>
+  </body>
+</html>
