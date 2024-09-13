@@ -22,16 +22,18 @@
       async
     ></script> -->
     <script>
-            $(document).ready(function(){
-              var masonryRow = document.querySelector('.row'); // Targeting the Masonry container
-      if (masonryRow) {
-          imagesLoaded(masonryRow, function() {
-              // Initialize Masonry after all images have loaded
-              new Masonry(masonryRow, {
-                itemSelector: '.col-4', // Targeting the grid items
-                percentPosition: true // Since you have 'percentPosition' in your data attribute
-              });
-              });
+      $(document).ready(function () {
+        var masonryRow = document.querySelector(".row"); // Targeting the Masonry container
+        if (masonryRow) {
+          imagesLoaded(masonryRow, function () {
+            // Initialize Masonry after all images have loaded
+            new Masonry(masonryRow, {
+              itemSelector: ".col-4", // Targeting the grid items
+              percentPosition: true, // Since you have 'percentPosition' in your data attribute
+            });
+          });
+        }
+      });
     </script>
     <style>
       .container > .row > .col-4 {
@@ -187,6 +189,6 @@
       integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   </body>
 </html>
