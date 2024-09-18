@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "deptNM": "輔諮系",
+    "deptFullNM": "輔導與諮商學系",
+    "collegeNM": "教育學院",
+    "collegeFullNM": "教育學院",
+    "agent": "葉芷菀",
+    "agentExt": 2208,
+    "agentEmail": "ytw@cc.ncue.edu.tw"
+  },
+  {
+    "id": 2,
+    "deptNM": "特教系",
+    "deptFullNM": "特殊教育學系",
+    "collegeNM": "教育學院",
+    "collegeFullNM": "教育學院",
+    "agent": "蔡雅惠",
+    "agentExt": 2405,
+    "agentEmail": "tyvonne@cc.ncue.edu.tw"
+  },
+  {
+    "id": 3,
+    "deptNM": "教研所",
+    "deptFullNM": "教育研究所",
+    "collegeNM": "教育學院",
+    "collegeFullNM": "教育學院",
+    "agent": "蘇筱婷",
+    "agentEmail": "sht8177@cc.ncue.edu.tw",
+    "agentExt": 2016
+  }
+]

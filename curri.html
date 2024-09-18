@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>班級轉換</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      #input1,
+      #output1 {
+        width: 200px; /* 初始寬度 */
+        max-width: 270px; /* 最大寬度 */
+        resize: both; /* 允許水平拉伸 */
+      }
+    </style>
+    <script>
+      fetch("deptlist.json")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              "Network response was not ok " + response.statusText
+            );
+          }
+          return response.json(); // 將響應轉換為 JSON
+        })
+        .then((data) => {
+          const deptTableBody = document.querySelector("#deptTable tbody");
+          data.forEach((dept) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${dept.deptFullNM} (${dept.deptNM})</td>
+              <td>${dept.collegeFullNM} (${dept.collegeNM})</td>
+              <td>${dept.agent}</td>
+              <td>${dept.agentExt}</td>
+              <td><a href="mailto:${dept.agentEmail}">${dept.agentEmail}</a></td>
+            `;
+            deptTableBody.appendChild(row);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching the JSON data: ", error);
+        });
+
+      $(function () {
+        $("textarea").css("resize", "both");
+
+        $("#input1").on("input", function () {
+          // setTimeout(function () {
+          var content = $("#input1").val();
+          console.log("粘貼的內容: \n", content); // 檢查粘貼後的內容
+
+          // 使用正則表達式處理所有可能的換行符
+          var lines = content.trim().split(/[\r\n]+/);
+          var res = [];
+          lines.forEach((item) => {
+            var first = item.substring(0, 1);
+            var second = item.substring(0, 2);
+            console.log(item.substring(0, 1));
+            console.log(item.substring(0, 2));
+
+            switch (first) {
+              case "輔":
+                res.push("輔諮系");
+                break;
+              case "特":
+                res.push("特教系");
+                break;
+              case "復":
+                res.push("復諮所");
+                break;
+              case "高":
+                res.push("高照原民專班");
+                break;
+              case "科":
+                res.push("科教所");
+                break;
+              case "數":
+                res.push("數學系");
+                break;
+              case "物":
+                res.push("物理系");
+                break;
+            }
+          });
+
+          var count = lines.length;
+          $("#row_count").text("共有 " + count + " 筆資料");
+
+          var output = res.toString().replace(",", "\r\n");
+
+          $("#output1").val(output);
+          console.log(output);
+          // }, 100); // 延遲100毫秒，確保資料已完全貼入
+        });
+
+        $("#btnClear").click(function () {
+          $("#input1").val("");
+          $("#row_count").text("");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>班級轉換</h1>
+
+    <div class="row p-2">
+      <div class="col-3 p-2 border">
+        <textarea name="" id="input1"></textarea>
+        <div id="row_count"></div>
+
+        <input id="btnClear" type="button" value="clear" />
+      </div>
+      <div class="col-3 p-2 border">
+        <textarea name="" id="output1"></textarea>
+      </div>
+    </div>
+
+    <div class="row p-2">
+      <h1>系所聯絡資訊</h1>
+      <table id="deptTable">
+        <thead>
+          <tr>
+            <th>系所名稱</th>
+            <th>學院</th>
+            <th>聯絡人</th>
+            <th>分機</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 資料會被插入到這裡 -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
